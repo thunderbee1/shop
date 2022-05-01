@@ -15,14 +15,14 @@ Coded by www.creative-tim.com
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
 
-// @mui material components
-import Icon from "@mui/material/Icon";
+import { useState } from "react";
 
 // Material Dashboard 2 React components
 import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
 import MDAvatar from "components/MDAvatar";
-import MDProgress from "components/MDProgress";
+import MDButton from "components/MDButton";
+import MDInput from "components/MDInput";
 
 // Images
 import homeDecor1 from "assets/images/home-decor-1.jpg";
@@ -33,6 +33,15 @@ import homeDecor5 from "assets/images/home-decor-5.jpg";
 import homeDecor6 from "assets/images/home-decor-6.jpeg";
 
 export default function data() {
+  const [quantities, setQuantity] = useState({
+    homeDecor1: 0,
+    homeDecor2: 0,
+    homeDecor3: 0,
+    homeDecor4: 0,
+    homeDecor5: 0,
+    homeDecor6: 0,
+  });
+
   const Project = ({ image, name }) => (
     <MDBox display="flex" alignItems="center" lineHeight={1}>
       <MDAvatar src={image} name={name} size="sm" variant="rounded" />
@@ -42,140 +51,127 @@ export default function data() {
     </MDBox>
   );
 
-  const Progress = ({ color, value }) => (
-    <MDBox display="flex" alignItems="center">
-      <MDTypography variant="caption" color="text" fontWeight="medium">
-        {value}%
-      </MDTypography>
-      <MDBox ml={0.5} width="9rem">
-        <MDProgress variant="gradient" color={color} value={value} />
-      </MDBox>
-    </MDBox>
-  );
+  const handleChange = (e) => {
+    setQuantity({ [e.target.name]: e.target.value });
+  };
 
   return {
     columns: [
-      { Header: "project", accessor: "project", width: "30%", align: "left" },
+      { Header: "product", accessor: "product", align: "left" },
       { Header: "budget", accessor: "budget", align: "left" },
-      { Header: "status", accessor: "status", align: "center" },
-      { Header: "completion", accessor: "completion", align: "center" },
-      { Header: "action", accessor: "action", align: "center" },
+      { Header: "quantity", accessor: "quantity", width: "20%", align: "left" },
+      { Header: "action", accessor: "action", align: "left" },
     ],
 
     rows: [
       {
-        project: <Project image={homeDecor1} name="Asana" />,
+        product: <Project image={homeDecor1} name="modern" />,
         budget: (
           <MDTypography component="a" href="#" variant="button" color="text" fontWeight="medium">
-            $2,500
+            $100
           </MDTypography>
         ),
-        status: (
-          <MDTypography component="a" href="#" variant="caption" color="text" fontWeight="medium">
-            working
-          </MDTypography>
+        quantity: (
+          <MDInput
+            style={{ width: "50%" }}
+            type="number"
+            value={quantities.homeDecor1}
+            name="homeDecor1"
+            size="small"
+            onChange={handleChange}
+          />
         ),
-        completion: <Progress color="info" value={60} />,
-        action: (
-          <MDTypography component="a" href="#" color="text">
-            <Icon>more_vert</Icon>
-          </MDTypography>
-        ),
+        action: <MDButton color="dark">Remove</MDButton>,
       },
       {
-        project: <Project image={homeDecor2} name="Github" />,
+        product: <Project image={homeDecor2} name="scandinavian" />,
         budget: (
           <MDTypography component="a" href="#" variant="button" color="text" fontWeight="medium">
-            $5,000
+            $200
           </MDTypography>
         ),
-        status: (
-          <MDTypography component="a" href="#" variant="caption" color="text" fontWeight="medium">
-            done
-          </MDTypography>
+        quantity: (
+          <MDInput
+            style={{ width: "50%" }}
+            type="number"
+            value={quantities.homeDecor2}
+            name="homeDecor2"
+            size="small"
+          />
         ),
-        completion: <Progress color="success" value={100} />,
-        action: (
-          <MDTypography component="a" href="#" color="text">
-            <Icon>more_vert</Icon>
-          </MDTypography>
-        ),
+        action: <MDButton color="dark">Remove</MDButton>,
       },
       {
-        project: <Project image={homeDecor3} name="Atlassian" />,
+        product: <Project image={homeDecor3} name="minimalist" />,
         budget: (
           <MDTypography component="a" href="#" variant="button" color="text" fontWeight="medium">
-            $3,400
+            $300
           </MDTypography>
         ),
-        status: (
-          <MDTypography component="a" href="#" variant="caption" color="text" fontWeight="medium">
-            canceled
-          </MDTypography>
+        quantity: (
+          <MDInput
+            style={{ width: "50%" }}
+            type="number"
+            value={quantities.homeDecor3}
+            name="homeDecor3"
+            size="small"
+          />
         ),
-        completion: <Progress color="error" value={30} />,
-        action: (
-          <MDTypography component="a" href="#" color="text">
-            <Icon>more_vert</Icon>
-          </MDTypography>
-        ),
+        action: <MDButton color="dark">Remove</MDButton>,
       },
       {
-        project: <Project image={homeDecor4} name="Spotify" />,
+        product: <Project image={homeDecor4} name="gothic" />,
         budget: (
           <MDTypography component="a" href="#" variant="button" color="text" fontWeight="medium">
-            $14,000
+            $400
           </MDTypography>
         ),
-        status: (
-          <MDTypography component="a" href="#" variant="caption" color="text" fontWeight="medium">
-            working
-          </MDTypography>
+        quantity: (
+          <MDInput
+            style={{ width: "50%" }}
+            type="number"
+            value={quantities.homeDecor4}
+            name="homeDecor4"
+            size="small"
+          />
         ),
-        completion: <Progress color="info" value={80} />,
-        action: (
-          <MDTypography component="a" href="#" color="text">
-            <Icon>more_vert</Icon>
-          </MDTypography>
-        ),
+        action: <MDButton color="dark">Remove</MDButton>,
       },
       {
-        project: <Project image={homeDecor5} name="Slack" />,
+        product: <Project image={homeDecor5} name="Arm Chair" />,
         budget: (
           <MDTypography component="a" href="#" variant="button" color="text" fontWeight="medium">
-            $1,000
+            $400
           </MDTypography>
         ),
-        status: (
-          <MDTypography component="a" href="#" variant="caption" color="text" fontWeight="medium">
-            canceled
-          </MDTypography>
+        quantity: (
+          <MDInput
+            style={{ width: "50%" }}
+            type="number"
+            value={quantities.homeDecor5}
+            name="homeDecor5"
+            size="small"
+          />
         ),
-        completion: <Progress color="error" value={0} />,
-        action: (
-          <MDTypography component="a" href="#" color="text">
-            <Icon>more_vert</Icon>
-          </MDTypography>
-        ),
+        action: <MDButton color="dark">Remove</MDButton>,
       },
       {
-        project: <Project image={homeDecor6} name="Invesion" />,
+        product: <Project image={homeDecor6} name="Wall Mirror" />,
         budget: (
           <MDTypography component="a" href="#" variant="button" color="text" fontWeight="medium">
-            $2,300
+            $500
           </MDTypography>
         ),
-        status: (
-          <MDTypography component="a" href="#" variant="caption" color="text" fontWeight="medium">
-            done
-          </MDTypography>
+        quantity: (
+          <MDInput
+            style={{ width: "50%" }}
+            type="number"
+            value={quantities.homeDecor6}
+            name="homeDecor6"
+            size="small"
+          />
         ),
-        completion: <Progress color="success" value={100} />,
-        action: (
-          <MDTypography component="a" href="#" color="text">
-            <Icon>more_vert</Icon>
-          </MDTypography>
-        ),
+        action: <MDButton color="dark">Remove</MDButton>,
       },
     ],
   };

@@ -113,7 +113,7 @@ function DefaultNavbar({ transparent, light, action }) {
         </MDBox>
         <MDBox color="inherit" display={{ xs: "none", lg: "flex" }} m={0} p={0}>
           <DefaultNavbarLink icon="collections" name="Collections" route="/" light={light} />
-          <DefaultNavbarLink icon="shopping_cart" name="Cart" route="/tables" light={light} />
+          <DefaultNavbarLink icon="shopping_cart" name="Cart" route="/cart" light={light} />
           <DefaultNavbarLink icon="receipt_long" name="Billing" route="/billing" light={light} />
           <DefaultNavbarLink
             icon="format_textdirection_r_to_l"
