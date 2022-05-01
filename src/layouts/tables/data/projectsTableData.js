@@ -17,6 +17,9 @@ Coded by www.creative-tim.com
 
 import { useState } from "react";
 
+// @mui material components
+import Icon from "@mui/material/Icon";
+
 // Material Dashboard 2 React components
 import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
@@ -33,7 +36,7 @@ import homeDecor5 from "assets/images/home-decor-5.jpg";
 import homeDecor6 from "assets/images/home-decor-6.jpeg";
 
 export default function data() {
-  const [quantities, setQuantity] = useState({
+  const [quantities, setQuantities] = useState({
     homeDecor1: 0,
     homeDecor2: 0,
     homeDecor3: 0,
@@ -42,9 +45,48 @@ export default function data() {
     homeDecor6: 0,
   });
 
+  const [items, setItems] = useState([
+    {
+      name: "modern",
+      price: "$100",
+      quantity: 0,
+      image: homeDecor1,
+    },
+    {
+      name: "scandinavian",
+      price: "$200",
+      quantity: 0,
+      image: homeDecor2,
+    },
+    {
+      name: "minimalist",
+      price: "$300",
+      quantity: 0,
+      image: homeDecor3,
+    },
+    {
+      name: "gothic",
+      price: "$400",
+      quantity: 0,
+      image: homeDecor4,
+    },
+    {
+      name: "Arm Chair",
+      price: "$400",
+      quantity: 0,
+      image: homeDecor5,
+    },
+    {
+      name: "Wall Mirror",
+      price: "$500",
+      quantity: 0,
+      image: homeDecor6,
+    },
+  ]);
+
   const Project = ({ image, name }) => (
     <MDBox display="flex" alignItems="center" lineHeight={1}>
-      <MDAvatar src={image} name={name} size="sm" variant="rounded" />
+      <MDAvatar src={image} name={name} size="xxl" variant="rounded" />
       <MDTypography display="block" variant="button" fontWeight="medium" ml={1} lineHeight={1}>
         {name}
       </MDTypography>
@@ -52,127 +94,51 @@ export default function data() {
   );
 
   const handleChange = (e) => {
-    setQuantity({ [e.target.name]: e.target.value });
+    if (e.target.value < 0) return;
+    const newQuantities = { ...quantities };
+    newQuantities[e.target.name] = e.target.value;
+    setQuantities(newQuantities);
   };
+
+  const rows = items.map((item, index) => ({
+    product: <Project image={item.image} name={item.name} />,
+    price: (
+      <MDTypography component="a" href="#" variant="button" color="text" fontWeight="medium">
+        {item.price}
+      </MDTypography>
+    ),
+    quantity: (
+      <MDInput
+        style={{ width: "50%" }}
+        type="number"
+        value={quantities[`homeDecor${index + 1}`] || 0}
+        name={`homeDecor${index + 1}`}
+        size="small"
+        onChange={handleChange}
+      />
+    ),
+    action: (
+      <MDButton
+        color="white"
+        onClick={() => {
+          const newItems = [...items];
+          newItems.splice(index, 1);
+          setItems(newItems);
+        }}
+      >
+        <Icon>clear</Icon>
+      </MDButton>
+    ),
+  }));
 
   return {
     columns: [
       { Header: "product", accessor: "product", align: "left" },
-      { Header: "budget", accessor: "budget", align: "left" },
+      { Header: "price", accessor: "price", align: "left" },
       { Header: "quantity", accessor: "quantity", width: "20%", align: "left" },
-      { Header: "action", accessor: "action", align: "left" },
+      { Header: "action", accessor: "action", align: "center" },
     ],
 
-    rows: [
-      {
-        product: <Project image={homeDecor1} name="modern" />,
-        budget: (
-          <MDTypography component="a" href="#" variant="button" color="text" fontWeight="medium">
-            $100
-          </MDTypography>
-        ),
-        quantity: (
-          <MDInput
-            style={{ width: "50%" }}
-            type="number"
-            value={quantities.homeDecor1}
-            name="homeDecor1"
-            size="small"
-            onChange={handleChange}
-          />
-        ),
-        action: <MDButton color="dark">Remove</MDButton>,
-      },
-      {
-        product: <Project image={homeDecor2} name="scandinavian" />,
-        budget: (
-          <MDTypography component="a" href="#" variant="button" color="text" fontWeight="medium">
-            $200
-          </MDTypography>
-        ),
-        quantity: (
-          <MDInput
-            style={{ width: "50%" }}
-            type="number"
-            value={quantities.homeDecor2}
-            name="homeDecor2"
-            size="small"
-          />
-        ),
-        action: <MDButton color="dark">Remove</MDButton>,
-      },
-      {
-        product: <Project image={homeDecor3} name="minimalist" />,
-        budget: (
-          <MDTypography component="a" href="#" variant="button" color="text" fontWeight="medium">
-            $300
-          </MDTypography>
-        ),
-        quantity: (
-          <MDInput
-            style={{ width: "50%" }}
-            type="number"
-            value={quantities.homeDecor3}
-            name="homeDecor3"
-            size="small"
-          />
-        ),
-        action: <MDButton color="dark">Remove</MDButton>,
-      },
-      {
-        product: <Project image={homeDecor4} name="gothic" />,
-        budget: (
-          <MDTypography component="a" href="#" variant="button" color="text" fontWeight="medium">
-            $400
-          </MDTypography>
-        ),
-        quantity: (
-          <MDInput
-            style={{ width: "50%" }}
-            type="number"
-            value={quantities.homeDecor4}
-            name="homeDecor4"
-            size="small"
-          />
-        ),
-        action: <MDButton color="dark">Remove</MDButton>,
-      },
-      {
-        product: <Project image={homeDecor5} name="Arm Chair" />,
-        budget: (
-          <MDTypography component="a" href="#" variant="button" color="text" fontWeight="medium">
-            $400
-          </MDTypography>
-        ),
-        quantity: (
-          <MDInput
-            style={{ width: "50%" }}
-            type="number"
-            value={quantities.homeDecor5}
-            name="homeDecor5"
-            size="small"
-          />
-        ),
-        action: <MDButton color="dark">Remove</MDButton>,
-      },
-      {
-        product: <Project image={homeDecor6} name="Wall Mirror" />,
-        budget: (
-          <MDTypography component="a" href="#" variant="button" color="text" fontWeight="medium">
-            $500
-          </MDTypography>
-        ),
-        quantity: (
-          <MDInput
-            style={{ width: "50%" }}
-            type="number"
-            value={quantities.homeDecor6}
-            name="homeDecor6"
-            size="small"
-          />
-        ),
-        action: <MDButton color="dark">Remove</MDButton>,
-      },
-    ],
+    rows,
   };
 }

@@ -19,10 +19,10 @@ import Card from "@mui/material/Card";
 
 // Material Dashboard 2 React components
 import MDBox from "components/MDBox";
+import MDTypography from "components/MDTypography";
 
 // Material Dashboard 2 React example components
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
-import Footer from "examples/Footer";
 import DataTable from "examples/Tables/DataTable";
 
 // Data
@@ -37,6 +37,11 @@ function Tables() {
         <Grid container spacing={6}>
           <Grid item xs={12}>
             <Card>
+              <MDBox pt={2} px={2} lineHeight={1.25}>
+                <MDTypography variant="h6" fontWeight="medium">
+                  Cart
+                </MDTypography>
+              </MDBox>
               <MDBox pt={3}>
                 <DataTable
                   table={{ columns: pColumns, rows: pRows }}
@@ -50,7 +55,6 @@ function Tables() {
           </Grid>
         </Grid>
       </MDBox>
-      <Footer />
     </DashboardLayout>
   );
 }
