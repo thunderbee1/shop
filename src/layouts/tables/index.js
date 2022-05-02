@@ -13,13 +13,17 @@ Coded by www.creative-tim.com
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
 
+import { useState } from "react";
+
 // @mui material components
 import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
+import Divider from "@mui/material/Divider";
 
 // Material Dashboard 2 React components
 import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
+import MDButton from "components/MDButton";
 
 // Material Dashboard 2 React example components
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
@@ -29,7 +33,8 @@ import DataTable from "examples/Tables/DataTable";
 import projectsTableData from "layouts/tables/data/projectsTableData";
 
 function Tables() {
-  const { columns: pColumns, rows: pRows } = projectsTableData();
+  const [totalPrice, setTotalPrice] = useState(0);
+  const { columns: pColumns, rows: pRows } = projectsTableData(totalPrice, setTotalPrice);
 
   return (
     <DashboardLayout>
@@ -51,6 +56,18 @@ function Tables() {
                   noEndBorder
                 />
               </MDBox>
+              <Grid container spacing={6}>
+                <Grid item xs={6}>
+                  <div />
+                </Grid>
+                <Grid item xs={6}>
+                  <MDBox textAlign="right" p={3}>
+                    <Divider />
+                    <MDTypography variant="h6">Total Price: ${totalPrice}</MDTypography>
+                    <MDButton color="info">Checkout</MDButton>
+                  </MDBox>
+                </Grid>
+              </Grid>
             </Card>
           </Grid>
         </Grid>

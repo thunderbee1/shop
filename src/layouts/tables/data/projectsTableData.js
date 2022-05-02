@@ -35,7 +35,7 @@ import homeDecor4 from "assets/images/home-decor-4.jpeg";
 import homeDecor5 from "assets/images/home-decor-5.jpg";
 import homeDecor6 from "assets/images/home-decor-6.jpeg";
 
-export default function data() {
+export default function data(totalPrice, setTotalPrice) {
   const [quantities, setQuantities] = useState({
     homeDecor1: 0,
     homeDecor2: 0,
@@ -48,37 +48,37 @@ export default function data() {
   const [items, setItems] = useState([
     {
       name: "modern",
-      price: "$100",
+      price: 100,
       quantity: 0,
       image: homeDecor1,
     },
     {
       name: "scandinavian",
-      price: "$200",
+      price: 200,
       quantity: 0,
       image: homeDecor2,
     },
     {
       name: "minimalist",
-      price: "$300",
+      price: 300,
       quantity: 0,
       image: homeDecor3,
     },
     {
       name: "gothic",
-      price: "$400",
+      price: 400,
       quantity: 0,
       image: homeDecor4,
     },
     {
       name: "Arm Chair",
-      price: "$400",
+      price: 400,
       quantity: 0,
       image: homeDecor5,
     },
     {
       name: "Wall Mirror",
-      price: "$500",
+      price: 500,
       quantity: 0,
       image: homeDecor6,
     },
@@ -98,45 +98,57 @@ export default function data() {
     const newQuantities = { ...quantities };
     newQuantities[e.target.name] = e.target.value;
     setQuantities(newQuantities);
+    setTotalPrice(
+      totalPrice + e.target.value * items[parseInt(e.target.name.split("homeDecor")[1], 10)].price
+    );
   };
 
   const rows = items.map((item, index) => ({
     product: <Project image={item.image} name={item.name} />,
     price: (
       <MDTypography component="a" href="#" variant="button" color="text" fontWeight="medium">
-        {item.price}
+        ${item.price}
       </MDTypography>
     ),
     quantity: (
-      <MDInput
-        style={{ width: "50%" }}
-        type="number"
-        value={quantities[`homeDecor${index + 1}`] || 0}
-        name={`homeDecor${index + 1}`}
-        size="small"
-        onChange={handleChange}
-      />
+      <>
+        <MDInput
+          style={{ width: "50%" }}
+          type="number"
+          value={quantities[`homeDecor${index + 1}`] || 0}
+          name={`homeDecor${index + 1}`}
+          size="small"
+          onChange={handleChange}
+        />
+        <MDButton color="success" iconOnly>
+          <Icon>cached</Icon>
+        </MDButton>
+        <MDButton
+          color="warning"
+          iconOnly
+          onClick={() => {
+            const newItems = [...items];
+            newItems.splice(index, 1);
+            setItems(newItems);
+          }}
+        >
+          <Icon>clear</Icon>
+        </MDButton>
+      </>
     ),
-    action: (
-      <MDButton
-        color="white"
-        onClick={() => {
-          const newItems = [...items];
-          newItems.splice(index, 1);
-          setItems(newItems);
-        }}
-      >
-        <Icon>clear</Icon>
-      </MDButton>
+    total: (
+      <MDTypography component="a" href="#" variant="button" color="text" fontWeight="medium">
+        ${item.price * quantities[`homeDecor${index + 1}`]}
+      </MDTypography>
     ),
   }));
 
   return {
     columns: [
-      { Header: "product", accessor: "product", align: "left" },
-      { Header: "price", accessor: "price", align: "left" },
-      { Header: "quantity", accessor: "quantity", width: "20%", align: "left" },
-      { Header: "action", accessor: "action", align: "center" },
+      { Header: "product", accessor: "product", align: "center" },
+      { Header: "quantity", accessor: "quantity", width: "20%", align: "center" },
+      { Header: "price", accessor: "price", align: "center" },
+      { Header: "total", accessor: "total", align: "center" },
     ],
 
     rows,
