@@ -49,7 +49,7 @@ function DefaultNavbarMobile({ open, close }) {
         <DefaultNavbarLink icon="table_view" name="Tables" route="/tables" />
         <DefaultNavbarLink icon="receipt_long" name="Billing" route="/billing" />
         <DefaultNavbarLink icon="notifications" name="Notifications" route="/notifications" />
-        <DefaultNavbarLink icon="person" name="Profile" route="/profile" />
+        <DefaultNavbarLink icon="receipt_long" name="Orders" route="/orders" />
         <DefaultNavbarLink icon="account_circle" name="Sign Up" route="/authentication/sign-up" />
         <DefaultNavbarLink icon="key" name="Sign In" route="/authentication/sign-in" />
       </MDBox>

@@ -116,18 +116,12 @@ function DefaultNavbar({ transparent, light, action }) {
           <DefaultNavbarLink icon="shopping_cart" name="Cart" route="/cart" light={light} />
           <DefaultNavbarLink icon="receipt_long" name="Billing" route="/billing" light={light} />
           <DefaultNavbarLink
-            icon="format_textdirection_r_to_l"
-            name="RTL"
-            route="/rtl"
-            light={light}
-          />
-          <DefaultNavbarLink
             icon="notifications"
             name="Notifications"
             route="/notifications"
             light={light}
           />
-          <DefaultNavbarLink icon="person" name="Profile" route="/profile" light={light} />
+          <DefaultNavbarLink icon="receipt_long" name="Orders" route="/orders" light={light} />
           <DefaultNavbarLink
             icon="account_circle"
             name="Sign Up"

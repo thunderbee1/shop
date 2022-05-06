@@ -14,66 +14,84 @@ Coded by www.creative-tim.com
 */
 
 // Images
-import kal from "assets/images/kal-visuals-square.jpg";
-import marie from "assets/images/marie.jpg";
-import ivana from "assets/images/ivana-square.jpg";
-import team3 from "assets/images/team-3.jpg";
-import team4 from "assets/images/team-4.jpg";
+import homeDecor1 from "assets/images/home-decor-1.jpg";
+import homeDecor2 from "assets/images/home-decor-2.jpg";
+import homeDecor3 from "assets/images/home-decor-3.jpg";
+import homeDecor4 from "assets/images/home-decor-4.jpeg";
+import homeDecor5 from "assets/images/home-decor-5.jpg";
+import homeDecor6 from "assets/images/home-decor-6.jpeg";
 
 export default [
   {
-    image: kal,
-    name: "Sophie B.",
-    description: "Hi! I need more information..",
+    image: homeDecor1,
+    name: "modern",
+    description: "As Uber works through a huge amount of internal management turmoil.",
     action: {
       type: "internal",
-      route: "/pages/profile/profile-overview",
+      route: "/collection/1",
       color: "info",
-      label: "reply",
+      label: "Shop Now",
     },
+    price: "$100",
   },
   {
-    image: marie,
-    name: "Anne Marie",
-    description: "Awesome work, can you..",
+    image: homeDecor2,
+    name: "scandinavian",
+    description: "Music is something that everyone has their own specific opinion about.",
     action: {
       type: "internal",
-      route: "/pages/profile/profile-overview",
+      route: "/collection/2",
       color: "info",
-      label: "reply",
+      label: "Shop Now",
     },
+    price: "$200",
   },
   {
-    image: ivana,
-    name: "Ivanna",
-    description: "About files I can..",
+    image: homeDecor3,
+    name: "minimalist",
+    description: "Different people have different taste, and various types of music.",
     action: {
       type: "internal",
-      route: "/pages/profile/profile-overview",
+      route: "/collection/3",
       color: "info",
-      label: "reply",
+      label: "Shop Now",
     },
+    price: "$300",
   },
   {
-    image: team4,
-    name: "Peterson",
-    description: "Have a great afternoon..",
+    image: homeDecor4,
+    name: "gothic",
+    description: "Why would anyone pick blue over pink? Pink is obviously a better color.",
     action: {
       type: "internal",
-      route: "/pages/profile/profile-overview",
+      route: "/collection/4",
       color: "info",
-      label: "reply",
+      label: "Shop Now",
     },
+    price: "$400",
   },
   {
-    image: team3,
-    name: "Nick Daniel",
-    description: "Hi! I need more information..",
+    image: homeDecor5,
+    name: "Arm Chair",
+    description: "Comfortable, cheep and stylish design.",
     action: {
       type: "internal",
-      route: "/pages/profile/profile-overview",
+      route: "/collection/5",
       color: "info",
-      label: "reply",
+      label: "Shop Now",
     },
+    price: "$400",
+  },
+  {
+    image: homeDecor6,
+    name: "Wall Mirror",
+    description: "wall mirror.",
+    action: {
+      type: "internal",
+      route: "/collection/6",
+      color: "info",
+      label: "Shop Now",
+    },
+    price: "$500",
   },
 ];
